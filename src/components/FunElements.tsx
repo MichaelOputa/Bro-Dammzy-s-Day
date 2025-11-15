@@ -1,34 +1,36 @@
 import { useEffect, useState } from 'react';
 
 export default function FunElements() {
-  const [confetti, setConfetti] = useState<{ id: number; left: string; delay: string; duration: string; color: string }[]>(
-    () =>
-      Array.from({ length: 50 }, (_, i) => ({
-        id: i,
-        left: `${Math.random() * 100}%`,
-        delay: `${Math.random() * 5}s`,
-        duration: `${5 + Math.random() * 5}s`,
-        color: ['bg-yellow-400', 'bg-pink-500', 'bg-blue-500', 'bg-green-500', 'bg-red-500', 'bg-purple-500'][Math.floor(Math.random() * 6)]
-      }))
-  );
-  const [balloons, setBalloons] = useState<{ id: number; left: string; delay: string; duration: string }[]>(
-    () =>
-      Array.from({ length: 15 }, (_, i) => ({
-        id: i,
-        left: `${Math.random() * 100}%`,
-        delay: `${Math.random() * 10}s`,
-        duration: `${15 + Math.random() * 10}s`
-      }))
-  );
-  const [sparkles, setSparkles] = useState<{ id: number; top: string; left: string; delay: string }[]>(
-    () =>
-      Array.from({ length: 30 }, (_, i) => ({
-        id: i,
-        top: `${Math.random() * 100}%`,
-        left: `${Math.random() * 100}%`,
-        delay: `${Math.random() * 3}s`
-      }))
-  );
+  const [confetti, setConfetti] = useState<{ id: number; left: string; delay: string; duration: string; color: string }[]>([]);
+  const [balloons, setBalloons] = useState<{ id: number; left: string; delay: string; duration: string }[]>([]);
+  const [sparkles, setSparkles] = useState<{ id: number; top: string; left: string; delay: string }[]>([]);
+
+  useEffect(() => {
+    const confettiArray = Array.from({ length: 50 }, (_, i) => ({
+      id: i,
+      left: `${Math.random() * 100}%`,
+      delay: `${Math.random() * 5}s`,
+      duration: `${5 + Math.random() * 5}s`,
+      color: ['bg-yellow-400', 'bg-pink-500', 'bg-blue-500', 'bg-green-500', 'bg-red-500', 'bg-purple-500'][Math.floor(Math.random() * 6)]
+    }));
+    setConfetti(confettiArray);
+
+    const balloonArray = Array.from({ length: 15 }, (_, i) => ({
+      id: i,
+      left: `${Math.random() * 100}%`,
+      delay: `${Math.random() * 10}s`,
+      duration: `${15 + Math.random() * 10}s`
+    }));
+    setBalloons(balloonArray);
+
+    const sparkleArray = Array.from({ length: 30 }, (_, i) => ({
+      id: i,
+      top: `${Math.random() * 100}%`,
+      left: `${Math.random() * 100}%`,
+      delay: `${Math.random() * 3}s`
+    }));
+    setSparkles(sparkleArray);
+  }, []);
 
   return (
     <>
